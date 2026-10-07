@@ -1,0 +1,23 @@
+[Unit]
+Description=DefaultSearch
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/usdtbot
+ExecStart=/usr/bin/node src/index.js
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+EnvironmentFile=/opt/usdtbot/.env
+User=usdtbot
+Group=usdtbot
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/usdtbot/data
+
+[Install]
+WantedBy=multi-user.target
